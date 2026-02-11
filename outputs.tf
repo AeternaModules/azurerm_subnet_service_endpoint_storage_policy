@@ -1,5 +1,5 @@
-output "subnet_service_endpoint_storage_policys" {
+output "subnet_service_endpoint_storage_policies" {
   description = "All subnet_service_endpoint_storage_policy resources"
-  value       = azurerm_subnet_service_endpoint_storage_policy.subnet_service_endpoint_storage_policys
+  value       = azurerm_subnet_service_endpoint_storage_policy.subnet_service_endpoint_storage_policies
 }
 

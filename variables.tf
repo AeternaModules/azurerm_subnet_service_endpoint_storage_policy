@@ -1,6 +1,6 @@
-variable "subnet_service_endpoint_storage_policys" {
+variable "subnet_service_endpoint_storage_policies" {
   description = <<EOT
-Map of subnet_service_endpoint_storage_policys, attributes below
+Map of subnet_service_endpoint_storage_policies, attributes below
 Required:
     - location
     - name
@@ -22,13 +22,13 @@ EOT
     definition = optional(list(object({
       description       = optional(string)
       name              = string
-      service           = optional(string, "Microsoft.Storage")
+      service           = optional(string) # Default: "Microsoft.Storage"
       service_resources = set(string)
     })))
   }))
   validation {
     condition = alltrue([
-      for k, v in var.subnet_service_endpoint_storage_policys : (
+      for k, v in var.subnet_service_endpoint_storage_policies : (
         v.definition == null || (length(v.definition) >= 1 && length(v.definition) <= 2)
       )
     ])
