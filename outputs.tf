@@ -1,3 +1,7 @@
+output "subnet_service_endpoint_storage_policies_id" {
+  description = "Map of id values across all subnet_service_endpoint_storage_policies, keyed the same as var.subnet_service_endpoint_storage_policies"
+  value       = { for k, v in azurerm_subnet_service_endpoint_storage_policy.subnet_service_endpoint_storage_policies : k => v.id }
+}
 output "subnet_service_endpoint_storage_policies_definition" {
   description = "Map of definition values across all subnet_service_endpoint_storage_policies, keyed the same as var.subnet_service_endpoint_storage_policies"
   value       = { for k, v in azurerm_subnet_service_endpoint_storage_policy.subnet_service_endpoint_storage_policies : k => v.definition }
