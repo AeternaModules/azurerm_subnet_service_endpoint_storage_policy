@@ -22,17 +22,17 @@ EOT
     definition = optional(list(object({
       description       = optional(string)
       name              = string
-      service           = optional(string) # Default: "Microsoft.Storage"
+      service           = optional(string)
       service_resources = set(string)
     })))
   }))
   validation {
     condition = alltrue([
       for k, v in var.subnet_service_endpoint_storage_policies : (
-        v.definition == null || (length(v.definition) >= 1 && length(v.definition) <= 2)
+        v.definition == null || (length(v.definition) <= 2)
       )
     ])
-    error_message = "Each definition list must contain between 1 and 2 items"
+    error_message = "Each definition list must contain at most 2 items"
   }
   # --- Unconfirmed validation candidates, derived from azurerm_subnet_service_endpoint_storage_policy's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
